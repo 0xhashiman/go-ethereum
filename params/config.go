@@ -472,6 +472,8 @@ type ChainConfig struct {
 
 	DepositContractAddress common.Address `json:"depositContractAddress,omitempty"`
 
+	Lab *LabConfig `json:"lab,omitempty"`
+
 	// EnableUBTAtGenesis is a flag that specifies whether the network uses
 	// the Verkle tree starting from the genesis block. If set to true, the
 	// genesis state will be committed using the Binary tree, eliminating the
@@ -489,6 +491,32 @@ type ChainConfig struct {
 	Ethash             *EthashConfig       `json:"ethash,omitempty"`
 	Clique             *CliqueConfig       `json:"clique,omitempty"`
 	BlobScheduleConfig *BlobScheduleConfig `json:"blobSchedule,omitempty"`
+}
+
+type LabConfig struct {
+	ChainName string `json:"chainName,omitempty"`
+
+	NativeToken *LabNativeTokenConfig `json:"nativeToken,omitempty"`
+	Fees        *LabFeesConfig        `json:"fees,omitempty"`
+	Consensus   *LabConsensusConfig   `json:"consensus,omitempty"`
+}
+
+type LabNativeTokenConfig struct {
+	Name        string `json:"name,omitempty"`
+	Symbol      string `json:"symbol,omitempty"`
+	Decimals    uint64 `json:"decimals,omitempty"`
+	BaseUnit    string `json:"baseUnit,omitempty"`
+	DisplayUnit string `json:"displayUnit,omitempty"`
+	Conversion  string `json:"conversion,omitempty"`
+}
+
+type LabFeesConfig struct {
+	MinGasPrice   string `json:"minGasPrice,omitempty"`
+	BlockGasLimit string `json:"blockGasLimit,omitempty"`
+}
+
+type LabConsensusConfig struct {
+	BlockTimeSeconds uint64 `json:"blockTimeSeconds,omitempty"`
 }
 
 // EthashConfig is the consensus engine configs for proof-of-work based sealing.
